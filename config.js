@@ -4,5 +4,10 @@ window.PORTFOLIO_CONFIG = {
   displayName: "Rhieyanne Fajardo",
   heroRole: "Game programming student · Unity & C#",
   contactEmail: "101554981@georgebrown.ca",
+  contactFormEndpoint: "",
+  degreeUrl: "./degree.png",
+  transcriptUrl: "./transcript.png",
+  unofficialTranscriptUrl: "",
+  recommendationUrl: "",
   resumeUrl: "./resume.pdf",
 };

@@ -3,17 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#090812" />
     <meta
       name="description"
       content="Rhieyanne Fajardo — game programming student at George Brown College, Unity & C#."
     />
+    <meta property="og:title" content="Rhieyanne Fajardo · Portfolio" />
+    <meta
+      property="og:description"
+      content="Game programming portfolio featuring projects, documents, and academic milestones."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./degree.png" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Rhieyanne Fajardo · Portfolio" />
+    <meta
+      property="twitter:description"
+      content="Game programming portfolio featuring projects, documents, and academic milestones."
+    />
+    <meta property="twitter:image" content="./degree.png" />
     <title>Rhieyanne Fajardo · Portfolio</title>
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem("portfolio-theme");
+          var theme = savedTheme === "light" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -21,10 +57,19 @@
       <a class="logo" href="#">Rhieyanne Fajardo</a>
       <nav class="nav" aria-label="Primary">
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#activity">Activity</a>
-        <a href="#" id="open-resume-nav">Resume</a>
+        <a href="#" id="open-documents-nav">Documents</a>
         <a href="#contact">Contact</a>
+        <div class="theme-switcher" role="group" aria-label="Theme switcher">
+          <button class="theme-btn" id="theme-dark-btn" type="button">
+            Dark
+          </button>
+          <button class="theme-btn" id="theme-light-btn" type="button">
+            Light
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -41,8 +86,8 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View projects</a>
-          <button class="btn btn-ghost" id="open-resume-btn" type="button">
-            View resume
+          <button class="btn btn-ghost" id="open-documents-btn" type="button">
+            View documents
           </button>
           <a
             class="btn btn-ghost"
@@ -61,8 +106,9 @@
           <p class="about-text">
             I’m pursuing Game Programming at George Brown College (2024–present),
             with a High School Diploma (Honours) from Marshall McLuhan Catholic
-            Secondary School.             I’ve shipped coursework and projects in Unity: 2D games with player
-            controls, enemy behaviour, and stable, responsive mechanics. I’m also a PCX Associate at Fortinos, where I
+            Secondary School. I’ve shipped coursework and projects in Unity: 2D
+            games with player controls, enemy behaviour, and stable, responsive
+            mechanics. I’m also a PCX Associate at Fortinos, where I
             collaborate in a fast-paced environment and keep a strong focus on
             people and clarity—skills I bring to team-based development.
           </p>
@@ -76,63 +122,151 @@
         </div>
       </section>
 
+      <section class="section" id="experience">
+        <h2 class="section-title">Experience Timeline</h2>
+        <p class="section-intro">
+          Snapshot of education and work experience from my resume.
+        </p>
+        <div class="award-highlight" aria-label="Academic award">
+          <p class="award-label">Academic Award</p>
+          <p class="award-text">
+            Dean’s List — George Brown College (Winter 2025 semester).
+          </p>
+        </div>
+        <ol class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-date">2026 - Present</div>
+            <h3 class="timeline-title">PCX Associate · Fortinos (Ontario)</h3>
+            <p class="timeline-text">
+              Supported 70-160 customers per shift in a fast-paced environment,
+              handled POS transactions accurately, and collaborated with team
+              members to keep daily operations smooth.
+            </p>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-date">2024 - Present</div>
+            <h3 class="timeline-title">
+              Game Programming Diploma · George Brown College
+            </h3>
+            <p class="timeline-text">
+              Built Unity gameplay systems including player controls, enemy
+              behaviour, collision logic, and optimization/testing workflows.
+            </p>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-date">2020 - 2024</div>
+            <h3 class="timeline-title">
+              High School Diploma (Honours) · Marshall McLuhan Catholic Secondary
+            </h3>
+            <p class="timeline-text">
+              Completed honours diploma while contributing to technical event
+              setup as part of the school technical crew.
+            </p>
+          </li>
+        </ol>
+      </section>
+
       <section class="section section--alt" id="projects">
         <h2 class="section-title">Projects</h2>
         <p class="section-intro">
           My featured game and a selection of my latest public GitHub projects.
         </p>
         <div id="projects-root" class="projects">
-          <a
-            class="card"
-            href="https://101554981.itch.io/beta-build-game-production"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <article class="card project-card">
             <h3 class="card-title">Beta Build Game Production</h3>
             <p class="card-desc">
               Ciastko - a Unity HTML5 cookie-clicking prototype built during
               production practice.
             </p>
             <div class="card-meta">itch.io * Unity * HTML5 * Prototype</div>
-          </a>
-          <a
-            class="card"
-            href="https://101554981.itch.io/game3001-assignment3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+            <div class="project-actions">
+              <a
+                class="project-link-btn"
+                href="https://101554981.itch.io/beta-build-game-production"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Play</a
+              >
+              <a
+                class="project-link-btn project-link-btn--ghost"
+                href="https://github.com/Rhieyanne"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Source</a
+              >
+            </div>
+          </article>
+          <article class="card project-card">
             <h3 class="card-title">Game3001 Assignment3</h3>
             <p class="card-desc">
               A Unity prototype focused on patrol and chase behavior with enemy AI
               state changes.
             </p>
             <div class="card-meta">itch.io * Unity * HTML5 * Patrolling game</div>
-          </a>
-          <a
-            class="card"
-            href="https://101554981.itch.io/assignment-1"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+            <div class="project-actions">
+              <a
+                class="project-link-btn"
+                href="https://101554981.itch.io/game3001-assignment3"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Play</a
+              >
+              <a
+                class="project-link-btn project-link-btn--ghost"
+                href="https://github.com/Rhieyanne"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Source</a
+              >
+            </div>
+          </article>
+          <article class="card project-card">
             <h3 class="card-title">Assignment 1</h3>
             <p class="card-desc">
               Unity HTML5 in-development project published on itch.io.
             </p>
             <div class="card-meta">itch.io * Unity * HTML5 * In development</div>
-          </a>
-          <a
-            class="card"
-            href="https://101554981.itch.io/assignment-2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+            <div class="project-actions">
+              <a
+                class="project-link-btn"
+                href="https://101554981.itch.io/assignment-1"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Play</a
+              >
+              <a
+                class="project-link-btn project-link-btn--ghost"
+                href="https://github.com/Rhieyanne"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Source</a
+              >
+            </div>
+          </article>
+          <article class="card project-card">
             <h3 class="card-title">Shortest Path Assignment</h3>
             <p class="card-desc">
               A Unity pathfinding assignment focused on finding and visualizing
               the shortest route from start to goal around obstacles.
             </p>
             <div class="card-meta">itch.io * Unity * HTML5 * Shortest path</div>
-          </a>
+            <div class="project-actions">
+              <a
+                class="project-link-btn"
+                href="https://101554981.itch.io/assignment-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Play</a
+              >
+              <a
+                class="project-link-btn project-link-btn--ghost"
+                href="https://github.com/Rhieyanne"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Source</a
+              >
+            </div>
+          </article>
           <p class="projects-status" id="projects-status">Loading projects…</p>
         </div>
       </section>
@@ -153,6 +287,8 @@
             class="activity-graph-image"
             id="activity-graph-img"
             alt="GitHub contribution activity graph"
+            loading="lazy"
+            decoding="async"
           />
         </a>
         <p class="projects-status" id="activity-fallback" hidden>
@@ -170,6 +306,28 @@
             <a id="contact-github" href="#" target="_blank" rel="noopener noreferrer">GitHub</a>.
           </span>
         </p>
+        <form class="contact-form" id="contact-form">
+          <label class="form-label" for="contact-name">Name</label>
+          <input class="form-input" id="contact-name" name="name" type="text" required />
+          <label class="form-label" for="contact-email-input">Email</label>
+          <input
+            class="form-input"
+            id="contact-email-input"
+            name="email"
+            type="email"
+            required
+          />
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea
+            class="form-textarea"
+            id="contact-message"
+            name="message"
+            rows="5"
+            required
+          ></textarea>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p class="projects-status" id="contact-form-status" hidden></p>
+        </form>
       </section>
     </main>
 
@@ -177,32 +335,67 @@
       <p>© <span id="year"></span> · Built for learning</p>
     </footer>
 
-    <div class="modal-backdrop" id="resume-modal" hidden>
+    <div class="modal-backdrop" id="document-modal" hidden>
       <div
         class="modal-panel"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="resume-modal-title"
+        aria-labelledby="document-modal-title"
       >
         <div class="modal-header">
-          <h2 id="resume-modal-title">Resume</h2>
+          <h2 id="document-modal-title">Documents</h2>
           <button
             class="modal-close"
-            id="close-resume-modal"
+            id="close-document-modal"
             type="button"
-            aria-label="Close resume"
+            aria-label="Close document"
           >
             ×
           </button>
         </div>
         <div class="modal-body">
+          <div class="document-tabs" role="tablist" aria-label="Document picker">
+            <button class="document-tab" id="doc-tab-resume" type="button" data-doc="resume">
+              Resume
+            </button>
+            <button class="document-tab" id="doc-tab-degree" type="button" data-doc="degree">
+              Degree
+            </button>
+            <button class="document-tab" id="doc-tab-transcript" type="button" data-doc="transcript">
+              Official Transcript
+            </button>
+            <button
+              class="document-tab"
+              id="doc-tab-unofficial-transcript"
+              type="button"
+              data-doc="unofficialTranscript"
+            >
+              Unofficial Transcript
+            </button>
+            <button
+              class="document-tab"
+              id="doc-tab-recommendation"
+              type="button"
+              data-doc="recommendation"
+            >
+              Recommendation Letter
+            </button>
+          </div>
           <iframe
-            id="resume-frame"
+            id="document-frame"
             class="resume-frame"
-            title="Rhieyanne Fajardo resume"
+            title="Document viewer"
           ></iframe>
-          <p class="resume-fallback" id="resume-fallback" hidden>
-            Resume file not found. Add your PDF path in <code>config.js</code>.
+          <img
+            id="document-image"
+            class="resume-image"
+            alt="Document image"
+            loading="lazy"
+            decoding="async"
+            hidden
+          />
+          <p class="resume-fallback" id="document-fallback" hidden>
+            Document file not found. Add your PDF path in <code>config.js</code>.
           </p>
         </div>
       </div>

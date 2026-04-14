@@ -22,6 +22,8 @@
       <nav class="nav" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <a href="#activity">Activity</a>
+        <a href="#" id="open-resume-nav">Resume</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -39,6 +41,9 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">View projects</a>
+          <button class="btn btn-ghost" id="open-resume-btn" type="button">
+            View resume
+          </button>
           <a
             class="btn btn-ghost"
             id="hero-github-link"
@@ -74,12 +79,85 @@
       <section class="section section--alt" id="projects">
         <h2 class="section-title">Projects</h2>
         <p class="section-intro">
-          Public repositories load from the GitHub API. Add your username in
-          <code>config.js</code> when your profile is ready.
+          My featured game and a selection of my latest public GitHub projects.
         </p>
         <div id="projects-root" class="projects">
+          <a
+            class="card"
+            href="https://101554981.itch.io/beta-build-game-production"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 class="card-title">Beta Build Game Production</h3>
+            <p class="card-desc">
+              Ciastko - a Unity HTML5 cookie-clicking prototype built during
+              production practice.
+            </p>
+            <div class="card-meta">itch.io * Unity * HTML5 * Prototype</div>
+          </a>
+          <a
+            class="card"
+            href="https://101554981.itch.io/game3001-assignment3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 class="card-title">Game3001 Assignment3</h3>
+            <p class="card-desc">
+              A Unity prototype focused on patrol and chase behavior with enemy AI
+              state changes.
+            </p>
+            <div class="card-meta">itch.io * Unity * HTML5 * Patrolling game</div>
+          </a>
+          <a
+            class="card"
+            href="https://101554981.itch.io/assignment-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 class="card-title">Assignment 1</h3>
+            <p class="card-desc">
+              Unity HTML5 in-development project published on itch.io.
+            </p>
+            <div class="card-meta">itch.io * Unity * HTML5 * In development</div>
+          </a>
+          <a
+            class="card"
+            href="https://101554981.itch.io/assignment-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h3 class="card-title">Shortest Path Assignment</h3>
+            <p class="card-desc">
+              A Unity pathfinding assignment focused on finding and visualizing
+              the shortest route from start to goal around obstacles.
+            </p>
+            <div class="card-meta">itch.io * Unity * HTML5 * Shortest path</div>
+          </a>
           <p class="projects-status" id="projects-status">Loading projects…</p>
         </div>
+      </section>
+
+      <section class="section" id="activity">
+        <h2 class="section-title">GitHub Activity</h2>
+        <p class="section-intro">
+          Live contribution graph from my GitHub profile.
+        </p>
+        <a
+          class="activity-graph-card"
+          id="activity-graph-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="activity-graph-image"
+            id="activity-graph-img"
+            alt="GitHub contribution activity graph"
+          />
+        </a>
+        <p class="projects-status" id="activity-fallback" hidden>
+          Activity graph could not load right now.
+        </p>
       </section>
 
       <section class="section" id="contact">
@@ -98,6 +176,37 @@
     <footer class="site-footer">
       <p>© <span id="year"></span> · Built for learning</p>
     </footer>
+
+    <div class="modal-backdrop" id="resume-modal" hidden>
+      <div
+        class="modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resume-modal-title"
+      >
+        <div class="modal-header">
+          <h2 id="resume-modal-title">Resume</h2>
+          <button
+            class="modal-close"
+            id="close-resume-modal"
+            type="button"
+            aria-label="Close resume"
+          >
+            ×
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe
+            id="resume-frame"
+            class="resume-frame"
+            title="Rhieyanne Fajardo resume"
+          ></iframe>
+          <p class="resume-fallback" id="resume-fallback" hidden>
+            Resume file not found. Add your PDF path in <code>config.js</code>.
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script src="config.js"></script>
     <script src="main.js"></script>

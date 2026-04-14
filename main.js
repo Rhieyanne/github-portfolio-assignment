@@ -1,10 +1,57 @@
 (function () {
   const cfg = window.PORTFOLIO_CONFIG || {};
   const username = (cfg.githubUsername || "").trim();
+  const resumeUrl = (cfg.resumeUrl || "").trim();
   const hasGithub = username.length > 0;
   const githubProfile = hasGithub
     ? `https://github.com/${encodeURIComponent(username)}`
     : "#";
+
+  const resumeModal = document.getElementById("resume-modal");
+  const openResumeNav = document.getElementById("open-resume-nav");
+  const openResumeBtn = document.getElementById("open-resume-btn");
+  const closeResumeModalBtn = document.getElementById("close-resume-modal");
+  const resumeFrame = document.getElementById("resume-frame");
+  const resumeFallback = document.getElementById("resume-fallback");
+
+  function openResumeModal(event) {
+    if (event) event.preventDefault();
+    if (!resumeModal) return;
+    if (resumeFrame && resumeFallback) {
+      if (resumeUrl) {
+        resumeFrame.hidden = false;
+        resumeFallback.hidden = true;
+        resumeFrame.src = resumeUrl;
+      } else {
+        resumeFrame.hidden = true;
+        resumeFallback.hidden = false;
+      }
+    }
+    resumeModal.hidden = false;
+    document.body.classList.add("modal-open");
+  }
+
+  function closeResumeModal() {
+    if (!resumeModal) return;
+    resumeModal.hidden = true;
+    document.body.classList.remove("modal-open");
+  }
+
+  if (openResumeNav) openResumeNav.addEventListener("click", openResumeModal);
+  if (openResumeBtn) openResumeBtn.addEventListener("click", openResumeModal);
+  if (closeResumeModalBtn) {
+    closeResumeModalBtn.addEventListener("click", closeResumeModal);
+  }
+  if (resumeModal) {
+    resumeModal.addEventListener("click", function (event) {
+      if (event.target === resumeModal) closeResumeModal();
+    });
+  }
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && resumeModal && !resumeModal.hidden) {
+      closeResumeModal();
+    }
+  });
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -36,6 +83,44 @@
     if (contactGithubWrap) contactGithubWrap.style.display = "none";
   } else if (contactGithub) {
     contactGithub.href = githubProfile;
+  }
+
+  const activitySection = document.getElementById("activity");
+  const activityGraphLink = document.getElementById("activity-graph-link");
+  const activityGraphImg = document.getElementById("activity-graph-img");
+  const activityFallback = document.getElementById("activity-fallback");
+  if (activitySection && activityGraphLink && activityGraphImg && activityFallback) {
+    if (!hasGithub) {
+      activitySection.hidden = true;
+    } else {
+      activityGraphLink.href = githubProfile;
+      const cacheBust = "t=" + String(Date.now());
+      const activityGraphUrl =
+        "https://github-readme-activity-graph.vercel.app/graph?username=" +
+        encodeURIComponent(username) +
+        "&theme=github-dark&hide_border=true&area=true&" +
+        cacheBust;
+      const activityFallbackUrl =
+        "https://ghchart.rshah.org/6ee7b7/" +
+        encodeURIComponent(username) +
+        "?" +
+        cacheBust;
+      let usingFallbackGraph = false;
+      activityGraphImg.src = activityGraphUrl;
+      activityGraphImg.addEventListener("error", function () {
+        if (!usingFallbackGraph) {
+          usingFallbackGraph = true;
+          activityGraphImg.src = activityFallbackUrl;
+          return;
+        }
+        activityGraphImg.hidden = true;
+        activityFallback.hidden = false;
+      });
+      activityGraphImg.addEventListener("load", function () {
+        activityGraphImg.hidden = false;
+        activityFallback.hidden = true;
+      });
+    }
   }
 
   const root = document.getElementById("projects-root");

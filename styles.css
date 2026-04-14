@@ -203,6 +203,10 @@ main {
   max-width: 40rem;
 }
 
+#projects .section-intro {
+  margin-bottom: 2rem;
+}
+
 .about-grid {
   display: grid;
   gap: 1.5rem;
@@ -241,6 +245,7 @@ main {
 .projects {
   display: grid;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 @media (min-width: 560px) {
@@ -301,6 +306,27 @@ main {
   color: var(--text-muted);
 }
 
+.activity-graph-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #0a0e14;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.activity-graph-card:hover {
+  border-color: rgba(110, 231, 183, 0.35);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.activity-graph-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .contact-text {
   margin: 0;
   color: var(--text-muted);
@@ -319,4 +345,78 @@ main {
   margin: 0;
   font-size: 0.875rem;
   color: var(--text-muted);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(8, 10, 15, 0.6);
+  backdrop-filter: blur(7px);
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal-panel {
+  width: min(920px, 100%);
+  max-height: min(88vh, 920px);
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #0f141d;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.modal-close {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: var(--bg-elevated);
+}
+
+.modal-body {
+  padding: 0.75rem;
+}
+
+.resume-frame {
+  width: 100%;
+  height: min(76vh, 720px);
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.resume-fallback {
+  margin: 0.35rem 0 0;
+  color: #fda4af;
+  font-size: 0.9rem;
+}
+
+body.modal-open {
+  overflow: hidden;
 }

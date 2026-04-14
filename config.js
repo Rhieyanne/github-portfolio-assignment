@@ -1,7 +1,8 @@
 /** Personalize the site. Add your GitHub handle when you have public repos to show. */
 window.PORTFOLIO_CONFIG = {
-  githubUsername: "",
+  githubUsername: "Rhieyanne",
   displayName: "Rhieyanne Fajardo",
   heroRole: "Game programming student · Unity & C#",
   contactEmail: "101554981@georgebrown.ca",
+  resumeUrl: "./resume.pdf",
 };

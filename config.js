@@ -1,7 +1,7 @@
-/** Change these values to personalize the site. */
+/** Personalize the site. Add your GitHub handle when you have public repos to show. */
 window.PORTFOLIO_CONFIG = {
-  githubUsername: "octocat",
-  displayName: "Your Name",
-  heroRole: "Developer & builder",
-  contactEmail: "you@example.com",
+  githubUsername: "",
+  displayName: "Rhieyanne Fajardo",
+  heroRole: "Game programming student · Unity & C#",
+  contactEmail: "101554981@georgebrown.ca",
 };

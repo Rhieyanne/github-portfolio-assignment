@@ -1,7 +1,10 @@
 (function () {
   const cfg = window.PORTFOLIO_CONFIG || {};
-  const username = (cfg.githubUsername || "octocat").trim();
-  const githubProfile = `https://github.com/${encodeURIComponent(username)}`;
+  const username = (cfg.githubUsername || "").trim();
+  const hasGithub = username.length > 0;
+  const githubProfile = hasGithub
+    ? `https://github.com/${encodeURIComponent(username)}`
+    : "#";
 
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -14,7 +17,11 @@
 
   const heroGithub = document.getElementById("hero-github-link");
   if (heroGithub) {
-    heroGithub.href = githubProfile;
+    if (hasGithub) {
+      heroGithub.href = githubProfile;
+    } else {
+      heroGithub.style.display = "none";
+    }
   }
 
   const contactEmail = document.getElementById("contact-email");
@@ -23,14 +30,24 @@
     contactEmail.textContent = cfg.contactEmail;
   }
 
+  const contactGithubWrap = document.getElementById("contact-github-wrap");
   const contactGithub = document.getElementById("contact-github");
-  if (contactGithub) {
+  if (!hasGithub) {
+    if (contactGithubWrap) contactGithubWrap.style.display = "none";
+  } else if (contactGithub) {
     contactGithub.href = githubProfile;
   }
 
   const root = document.getElementById("projects-root");
   const status = document.getElementById("projects-status");
   if (!root || !status) return;
+
+  if (!hasGithub) {
+    status.textContent =
+      "Add your GitHub username in config.js to list public repositories here.";
+    status.classList.remove("is-error");
+    return;
+  }
 
   const apiUrl = `https://api.github.com/users/${encodeURIComponent(username)}/repos?sort=updated&per_page=12`;
 
@@ -74,7 +91,7 @@
         meta.className = "card-meta";
         const stars = repo.stargazers_count ?? 0;
         const lang = repo.language || "—";
-        meta.textContent = stars + " ★ · " + lang;
+        meta.textContent = stars + " * · " + lang;
 
         a.appendChild(title);
         a.appendChild(desc);
